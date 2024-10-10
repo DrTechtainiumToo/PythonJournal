@@ -16,7 +16,6 @@ Directories like /usr/bin, /bin, /usr/sbin, and /sbin should be towards the end 
 Cleaning your Path, look for:
 Duplicated entries: If you see the same directory multiple times, you can remove the extra occurrences.
 Obsolete paths: Paths pointing to old software versions or tools you no longer use can be deleted.
-
 Simplify Additions: Instead of adding multiple directories, merge them into one line
 
 commands
@@ -32,3 +31,4 @@ if [ -d ]: (Does something) fi
 fi closes the if statement, similar to how } works in other programming languages.
 export PATH line appends to or updates the PATH variable.
 The colon (:) separates directories in the $PATH variable. It tells the shell where one directory ends and another begins
+$HOME is your home directory, used to reference your personal user space.
