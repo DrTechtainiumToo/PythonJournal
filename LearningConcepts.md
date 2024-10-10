@@ -110,3 +110,5 @@ for index, timeStr in enumerate(timeListToSortAlgo): This unpacks each pair gene
 This allows you to use both the index of each item (to access or modify items in the list by their position) and the value of each item (to work with the content directly) within the loop.
 """
 #BIG LEARNING CONCEPT: (Or statements) if dateValue == 7 or 6: This condition does not check if dateValue is either 7 or 6. Instead, it checks if dateValue is 7, or if 6 is true. Since non-zero integers are considered truthy in Python, 6 is always true, making the condition always evaluate to true. if dateValue == 7 or dateValue == 6: is the proper way to implement a comparing "or" type argument
+
+Shortcut for making an easy list of dependencies for project note: pip freeze > requirements.txt 
