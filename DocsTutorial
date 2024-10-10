@@ -1,0 +1,4 @@
+requirements.txt is hardly even a standard, it just started as a convention at some point for listing dependencies - I don't know when or where it originated, though. Nowadays it's getting less common as dependency management has evolved, although older projects still use them.
+setup.py (and setup.cfg) are what we used to use as build scripts for packages, but since it's inherently a security risk to run code as a build step we've since moved on to a standard that doesn't allow arbitrary code execution.
+tox.ini is a configuration file for Tox, which is essentially a test runner mostly used in CI builds.
+pyproject.toml combines all of the above, and more. It contains the project metadata, like dependencies and version number, and it can optionally be used for storing configuration for various tools used by the project, such as linters (Ruff), tests (Pytest, Tox), or build systems. It's the current standard, and is heavily inspired by Rust's cargo.toml files.
