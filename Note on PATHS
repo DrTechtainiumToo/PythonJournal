@@ -31,3 +31,4 @@ if [ -d ]: (Does something) fi
 -d is an option that tests whether the given path is a directory.
 fi closes the if statement, similar to how } works in other programming languages.
 export PATH line appends to or updates the PATH variable.
+The colon (:) separates directories in the $PATH variable. It tells the shell where one directory ends and another begins
