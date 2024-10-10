@@ -1,0 +1,33 @@
+The PATH is an environment variable that tells your operating system where to look for executables. When you type a command like python or pip, your shell searches through all the directories listed in your PATH to find it. Over time, as different tools and versions get installed, your PATH can get crowded and confusing.
+
+
+General Guidelines for PATH Order
+The order of directories in your PATH matters. When you execute a command, the shell searches the directories in PATH from left to right, and it uses the first match it finds. Therefore, if you have multiple versions of tools or conflicting binaries, it's important to order your PATH logically.
+
+User-Specific Binaries First:
+Any binaries you’ve installed in user-specific locations (like ~/.local/bin or ~/bin) should come first. This ensures that commands you install or create for your user are prioritized over system-wide commands.
+Custom Development Tools:
+Tools and directories specific to development (like your Flutter, Node.js, or VSCode binaries) should come next. This ensures that your projects use the versions of tools you've explicitly chosen for development.
+Package Manager Binaries:
+Any paths related to package managers (/usr/local/bin, nvm paths, etc.) should come after custom tools. These typically contain general-purpose binaries that shouldn’t override development-specific ones unless necessary.
+System Binaries Last:
+Directories like /usr/bin, /bin, /usr/sbin, and /sbin should be towards the end of the PATH. These directories contain system utilities that are typically the fallback if no user-level or custom-installed tools match the command.
+
+Cleaning your Path, look for:
+Duplicated entries: If you see the same directory multiple times, you can remove the extra occurrences.
+Obsolete paths: Paths pointing to old software versions or tools you no longer use can be deleted.
+
+Simplify Additions: Instead of adding multiple directories, merge them into one line
+
+commands
+echo $PATH
+nano (~/.bashrc, ~/.zshrc, or ~/.profile)
+source (~/.bashrc, ~/.zshrc, or ~/.profile) >reloads
+command -v (program) or which (program) tells where from and which verison of command is executed
+
+
+BASH / ZSH NOTES:
+if [ -d ]: (Does something) fi
+-d is an option that tests whether the given path is a directory.
+fi closes the if statement, similar to how } works in other programming languages.
+export PATH line appends to or updates the PATH variable.
