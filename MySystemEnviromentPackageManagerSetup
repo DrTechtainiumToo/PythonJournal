@@ -1,1 +1,108 @@
 
+NEVERMIND IGNORE THIS SHIT
+
+Keeping documentation up to date:
+a. Use Automation Where Possible
+
+Environment Export Commands:
+Export the Conda environment using: conda env export > environment.yml
+Include this command in your setup guide, so anyone (including future-you) can recreate or update the environment. Running this regularly will make sure environment.yml reflects the latest dependencies.
+Poetry Commands: Use poetry update to ensure all dependencies in pyproject.toml are current.
+Commit the poetry.lock file after running updates to lock the dependency versions. This ensures everyone using your project has consistent package versions.
+
+b. Create a Centralized Setup Script
+Create a script (setup.sh) that documents all commands needed to set up the environment. 
+
+c. Document High-Level Steps in the README
+
+Make sure your README.md explains:
+
+How to set up the environment (conda, poetry, and using the setup script).
+How dependencies are added:
+Example: “Use Conda for system dependencies, use poetry add for all Python packages.”
+Where and how to update dependencies (e.g., update environment.yml for Conda packages and run poetry update for Python dependencies).
+
+2. Assigning Responsibilities Between Programs
+To keep your environment management organized, assign specific responsibilities to each tool. This reduces confusion about what each tool is used for and keeps things clean:
+
+Conda:
+Use Conda to manage:
+Base Python version.
+Any system-level dependencies (e.g., databases, tools like ffmpeg).
+Libraries that often require compilation (e.g., numpy, pandas, scipy).
+Essentially, Conda is your base environment manager.
+Poetry:
+Use Poetry to:
+Manage Python dependencies within the environment.
+Add standard packages you’d typically use (requests, flask, etc.).
+Handle versioning and dependency management using pyproject.toml and poetry.lock.
+Pip:
+Only use Pip when:
+A package is not available in Conda or is very new and not available in Poetry's default repository.
+For quick, one-off installations without needing to document in pyproject.toml (though it’s better to eventually update this in pyproject.toml)
+
+
+How to Add Libraries to the Environment
+If you want to add libraries to your Conda + Poetry environment, follow these rules:
+
+System-Level or Complex Libraries (like numpy, scipy, pandas):
+Use Conda to add these because it will handle all the low-level dependencies:
+conda install numpy scipy pandas
+Python Libraries:
+Use Poetry to add pure Python libraries. For example:
+poetry add requests flask
+This way, you’ll be using the right tool for the job:
+
+Conda for system-level dependencies and complex libraries.
+Poetry for Python-specific dependencies.
+first set up Conda using environment.yml, then use poetry install
+
+
+**Practical Workflow Example**
+Here's how you could combine these tools step-by-step:
+
+Create Base Environment Using Conda:
+sh
+Copy code
+conda create -n my_project_env python=3.10 numpy pandas scipy
+conda activate my_project_env
+This installs the Python version and base packages that can be complex to handle with Pip.
+Install Poetry and Set Up Project:
+If Poetry is installed globally:
+sh
+Copy code
+poetry init  # Initialize a new pyproject.toml in the project directory
+Or install Poetry in Conda (if you prefer environment isolation):
+sh
+Copy code
+conda install poetry -c conda-forge
+poetry init
+Add Python-Specific Dependencies Using Poetry:
+sh
+Copy code
+poetry add requests flask
+Poetry will keep track of all your Python dependencies in pyproject.toml and generate a lock file (poetry.lock) for consistent installation.
+Add Niche Packages Using Pip:
+sh
+Copy code
+pip install some_new_library
+If something isn't available in Conda or Poetry, you can add it with Pip. Just be sure to document this in your README.
+
+
+# My Project
+
+## Setup Instructions
+
+1. **Install Conda** (via Miniconda) and create the base environment:
+   ```sh
+   conda env create -f environment.yml
+   conda activate my_project_env
+poetry install
+
+
+
+
+just for conda: conda create -n my_env python=3.10
+conda activate my_env
+
+
